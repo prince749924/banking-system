@@ -191,7 +191,7 @@ class CustomerLogin:
         Label2 = tk.Label(Canvas1, background="#ffffff", disabledforeground="#a3a3a3", foreground="#000000")
         Label2.place(relx=0.067, rely=0.283, height=181, width=233)
         global _img0
-        _img0 = tk.PhotoImage(file="./images/customer.png")
+        _img0 = tk.PhotoImage(file="images/customer-logo.PNG")
         Label2.configure(image=_img0)
 
         self.Entry1 = tk.Entry(Canvas1, background="#e2e2e2", borderwidth="2", disabledforeground="#a3a3a3",
@@ -237,7 +237,7 @@ class CustomerLogin:
         self.Button_back.place(relx=0.545, rely=0.755)
 
         global customer_img
-        customer_img = tk.PhotoImage(file="./images/customer.png")
+        customer_img = tk.PhotoImage(file="images/customer-logo.PNG")
 
     def back(self):
         self.master.withdraw()
