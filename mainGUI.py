@@ -48,8 +48,10 @@ class welcomeScreen:
 
     def selectCustomer(self):
         self.master.withdraw()
-        # CustomerLogin(Toplevel(self.master))
+        CustomerLogin(Toplevel(self.master))
 
+
+# Error function
 class Error:
     def __init__(self, window=None):
         global master
@@ -79,6 +81,8 @@ class Error:
     def goback(self):
         master.withdraw()
 
+
+# Admin login function inside the system
 class adminLogin:
     def __init__(self, window=None):
         self.master = window
@@ -138,7 +142,7 @@ class adminLogin:
         self.Button_back.place(relx=0.545, rely=0.755)
 
         global admin_img
-        admin_img = tk.PhotoImage(file="./images/adminLogin1.png")
+        admin_img = tk.PhotoImage(file="./images/small-logo.PNG")
 
     def back(self):
         self.master.withdraw()
@@ -156,6 +160,101 @@ class adminLogin:
         if check_credentials(admin_id, admin_password, 1, True):
             self.master.withdraw()
             # adminMenu(Toplevel(self.master))
+        else:
+            Error(Toplevel(self.master))
+            Error.setMessage(self, message_shown="Invalid Credentials!")
+            self.setImg()
+
+
+# Customer login inside the system
+class CustomerLogin:
+    def __init__(self, window=None):
+        self.master = window
+        window.geometry("743x494+338+92")
+        window.minsize(120, 1)
+        window.maxsize(1370, 749)
+        window.resizable(0, 0)
+        window.title("Customer")
+        window.configure(background="#cf0000")
+
+        global Canvas1
+        Canvas1 = tk.Canvas(window, background="#ffffff", insertbackground="black", relief="ridge",
+                            selectbackground="blue", selectforeground="white")
+        Canvas1.place(relx=0.108, rely=0.142, relheight=0.715, relwidth=0.798)
+
+        Label1 = tk.Label(Canvas1, background="#ffffff", disabledforeground="#a3a3a3",
+                          font="-family {Segoe UI} -size 14 -weight bold", foreground="#000000",
+                          text="Customer Login")
+        Label1.place(relx=0.135, rely=0.142, height=41, width=154)
+
+        global Label2
+        Label2 = tk.Label(Canvas1, background="#ffffff", disabledforeground="#a3a3a3", foreground="#000000")
+        Label2.place(relx=0.067, rely=0.283, height=181, width=233)
+        global _img0
+        _img0 = tk.PhotoImage(file="./images/customer.png")
+        Label2.configure(image=_img0)
+
+        self.Entry1 = tk.Entry(Canvas1, background="#e2e2e2", borderwidth="2", disabledforeground="#a3a3a3",
+                               font="TkFixedFont", foreground="#000000", highlightbackground="#b6b6b6",
+                               highlightcolor="#004080", insertbackground="black")
+        self.Entry1.place(relx=0.607, rely=0.453, height=20, relwidth=0.26)
+
+        self.Entry1_1 = tk.Entry(Canvas1, show='*', background="#e2e2e2", borderwidth="2",
+                                 disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
+                                 highlightbackground="#d9d9d9", highlightcolor="#004080", insertbackground="black",
+                                 selectbackground="blue", selectforeground="white")
+        self.Entry1_1.place(relx=0.607, rely=0.623, height=20, relwidth=0.26)
+
+        self.Label3 = tk.Label(Canvas1, background="#ffffff", disabledforeground="#a3a3a3", foreground="#000000")
+        self.Label3.place(relx=0.556, rely=0.453, height=21, width=34)
+
+        global _img1
+        _img1 = tk.PhotoImage(file="./images/user1.png")
+        self.Label3.configure(image=_img1)
+
+        self.Label4 = tk.Label(Canvas1)
+        self.Label4.place(relx=0.556, rely=0.623, height=21, width=34)
+        global _img2
+        _img2 = tk.PhotoImage(file="./images/lock1.png")
+        self.Label4.configure(image=_img2, background="#ffffff")
+
+        self.Label5 = tk.Label(Canvas1, background="#ffffff", disabledforeground="#a3a3a3", foreground="#000000")
+        self.Label5.place(relx=0.670, rely=0.142, height=71, width=74)
+        global _img3
+        _img3 = tk.PhotoImage(file="./images/bank1.png")
+        self.Label5.configure(image=_img3)
+
+        self.Button = tk.Button(Canvas1, text="Login", borderwidth="0", width=10, background="#cf0000",
+                                foreground="#ffffff",
+                                font="-family {Segoe UI} -size 10 -weight bold",
+                                command=lambda: self.login(self.Entry1.get(), self.Entry1_1.get()))
+        self.Button.place(relx=0.765, rely=0.755)
+
+        self.Button_back = tk.Button(Canvas1, text="Back", borderwidth="0", width=10, background="#cf0000",
+                                     foreground="#ffffff",
+                                     font="-family {Segoe UI} -size 10 -weight bold",
+                                     command=self.back)
+        self.Button_back.place(relx=0.545, rely=0.755)
+
+        global customer_img
+        customer_img = tk.PhotoImage(file="./images/customer.png")
+
+    def back(self):
+        self.master.withdraw()
+        welcomeScreen(Toplevel(self.master))
+
+    @staticmethod
+    def setImg():
+        settingIMG = tk.Label(Canvas1, background="#ffffff", disabledforeground="#a3a3a3", foreground="#000000")
+        settingIMG.place(relx=0.067, rely=0.283, height=181, width=233)
+        settingIMG.configure(image=customer_img)
+
+    def login(self, customer_account_number, customer_PIN):
+        if check_credentials(customer_account_number, customer_PIN, 2, False):
+            global customer_accNO
+            customer_accNO = str(customer_account_number)
+            self.master.withdraw()
+            # customerMenu(Toplevel(self.master))
         else:
             Error(Toplevel(self.master))
             Error.setMessage(self, message_shown="Invalid Credentials!")
