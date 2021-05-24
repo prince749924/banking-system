@@ -25,8 +25,7 @@ class welcomeScreen:
 
         # load the .gif image file
         self.gif1 = PhotoImage(file='images/nic-login-form.PNG')
-        # put gif image on canvas
-        # pic's upper left corner (NW) on the canvas is at x=50 y=10
+        # put gif image on canvas pic's upper left corner (NW) on the canvas is at x=50 y=10
         self.Canvas1.create_image(25, 0, image=self.gif1, anchor=NW)
 
         self.Button1 = tk.Button(self.Canvas1, command=self.selectEmployee, activebackground="#ececec", activeforeground="#000000", background="#cf0000", disabledforeground="#a3a3a3", foreground="#fbfbfb", borderwidth="0", highlightbackground="#d9d9d9",
@@ -159,11 +158,95 @@ class adminLogin:
         admin_idNO = admin_id
         if check_credentials(admin_id, admin_password, 1, True):
             self.master.withdraw()
-            # adminMenu(Toplevel(self.master))
+            adminMenu(Toplevel(self.master)) # Admin menu to access user
         else:
             Error(Toplevel(self.master))
             Error.setMessage(self, message_shown="Invalid Credentials!")
             self.setImg()
+
+# Admin menu
+class adminMenu:
+    def __init__(self, window=None):
+        self.master = window
+        window.geometry("743x494+329+153")
+        window.minsize(120, 1)
+        window.maxsize(1370, 749)
+        window.resizable(0, 0)
+        window.title("Admin Menu")
+        window.configure(background="#ffffff")
+
+        self.Labelframe1 = tk.LabelFrame(window, relief='groove', borderwidth="8", font="-family {Segoe UI} -size 13 -weight bold", foreground="#000000", background="#fffffe")
+        self.Labelframe1.place(relx=0.081, rely=0.081, relheight=0.415, relwidth=0.848)
+
+        self.Button1 = tk.Button(self.Labelframe1, activebackground="#ececec", activeforeground="#000000", background="#cf0000", borderwidth="0", disabledforeground="#a3a3a3",
+                                 font="-family {Segoe UI} -size 11 -weight bold", foreground="#fffffe", highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
+                                 text="Close bank account", command=self.closeAccount)
+        self.Button1.place(relx=0.667, rely=0.195, height=34, width=181, bordermode='ignore')
+
+        self.Button2 = tk.Button(self.Labelframe1, activebackground="#ececec", activeforeground="#000000", background="#cf0000", borderwidth="0", disabledforeground="#a3a3a3",
+                                 font="-family {Segoe UI} -size 11 -weight bold", foreground="#fffffe", highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
+                                 text="Create bank account", command=self.createCustaccount)
+        self.Button2.place(relx=0.04, rely=0.195, height=34, width=181, bordermode='ignore')
+
+        self.Button3 = tk.Button(self.Labelframe1, activebackground="#ececec", activeforeground="#000000", background="#cf0000", borderwidth="0", disabledforeground="#a3a3a3",
+                                 font="-family {Segoe UI} -size 11 -weight bold", foreground="#fffffe", highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text="Exit", command=self.exit)
+        self.Button3.place(relx=0.667, rely=0.683, height=34, width=181, bordermode='ignore')
+
+        self.Button4 = tk.Button(self.Labelframe1, activebackground="#ececec", activeforeground="#000000", background="#cf0000", borderwidth="0", disabledforeground="#a3a3a3",
+                                 font="-family {Segoe UI} -size 11 -weight bold", foreground="#fffffe", highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
+                                 text="Create admin account", command=self.createAdmin)
+        self.Button4.place(relx=0.04, rely=0.439, height=34, width=181, bordermode='ignore')
+
+        self.Button5 = tk.Button(self.Labelframe1, activebackground="#ececec", activeforeground="#000000", background="#cf0000", borderwidth="0", disabledforeground="#a3a3a3",
+                                 font="-family {Segoe UI} -size 11 -weight bold", foreground="#fffffe", highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
+                                 text="Close admin account", command=self.deleteAdmin)
+        self.Button5.place(relx=0.667, rely=0.439, height=34, width=181, bordermode='ignore')
+
+        self.Button6 = tk.Button(self.Labelframe1, activebackground="#ececec", activeforeground="#000000", background="#cf0000", foreground="#fffffe", borderwidth="0",
+                                 disabledforeground="#a3a3a3", font="-family {Segoe UI} -size 11 -weight bold", highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
+                                 text="Check account summary", command=self.showAccountSummary)
+        self.Button6.place(relx=0.04, rely=0.683, height=34, width=181, bordermode='ignore')
+
+        global Frame1
+        Frame1 = tk.Frame(window, relief='groove', borderwidth="8", background="#fffffe")
+        Frame1.place(relx=0.081, rely=0.547, relheight=0.415, relwidth=0.848)
+
+    def closeAccount(self):
+        CloseAccountByAdmin(Toplevel(self.master))
+
+    def createCustaccount(self):
+        createCustomerAccount(Toplevel(self.master))
+
+    def createAdmin(self):
+        createAdmin(Toplevel(self.master))
+
+    def deleteAdmin(self):
+        deleteAdmin(Toplevel(self.master))
+
+    def showAccountSummary(self):
+        checkAccountSummary(Toplevel(self.master))
+
+    def printAccountSummary(identity):
+        # clearing the frame
+        for widget in Frame1.winfo_children():
+            widget.destroy()
+        # getting output_message and displaying it in the frame
+        output = display_account_summary(identity, 1)
+        output_message = Label(Frame1, text=output, background="#fffffe")
+        output_message.pack(pady=20)
+
+    def printMessage_outside(output):
+        # clearing the frame
+        for widget in Frame1.winfo_children():
+            widget.destroy()
+        # getting output_message and displaying it in the frame
+        output_message = Label(Frame1, text=output, background="#fffffe")
+        output_message.pack(pady=20)
+
+    def exit(self):
+        self.master.withdraw()
+        adminLogin(Toplevel(self.master))
+
 
 
 # Customer login inside the system
@@ -178,13 +261,10 @@ class CustomerLogin:
         window.configure(background="#cf0000")
 
         global Canvas1
-        Canvas1 = tk.Canvas(window, background="#ffffff", insertbackground="black", relief="ridge",
-                            selectbackground="blue", selectforeground="white")
+        Canvas1 = tk.Canvas(window, background="#ffffff", insertbackground="black", relief="ridge", selectbackground="blue", selectforeground="white")
         Canvas1.place(relx=0.108, rely=0.142, relheight=0.715, relwidth=0.798)
 
-        Label1 = tk.Label(Canvas1, background="#ffffff", disabledforeground="#a3a3a3",
-                          font="-family {Segoe UI} -size 14 -weight bold", foreground="#000000",
-                          text="Customer Login")
+        Label1 = tk.Label(Canvas1, background="#ffffff", disabledforeground="#a3a3a3", font="-family {Segoe UI} -size 14 -weight bold", foreground="#000000", text="Customer Login")
         Label1.place(relx=0.135, rely=0.142, height=41, width=154)
 
         global Label2
@@ -194,15 +274,12 @@ class CustomerLogin:
         _img0 = tk.PhotoImage(file="images/customer-logo.PNG")
         Label2.configure(image=_img0)
 
-        self.Entry1 = tk.Entry(Canvas1, background="#e2e2e2", borderwidth="2", disabledforeground="#a3a3a3",
-                               font="TkFixedFont", foreground="#000000", highlightbackground="#b6b6b6",
+        self.Entry1 = tk.Entry(Canvas1, background="#e2e2e2", borderwidth="2", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000", highlightbackground="#b6b6b6",
                                highlightcolor="#004080", insertbackground="black")
         self.Entry1.place(relx=0.607, rely=0.453, height=20, relwidth=0.26)
 
-        self.Entry1_1 = tk.Entry(Canvas1, show='*', background="#e2e2e2", borderwidth="2",
-                                 disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
-                                 highlightbackground="#d9d9d9", highlightcolor="#004080", insertbackground="black",
-                                 selectbackground="blue", selectforeground="white")
+        self.Entry1_1 = tk.Entry(Canvas1, show='*', background="#e2e2e2", borderwidth="2", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000",
+                                 highlightbackground="#d9d9d9", highlightcolor="#004080", insertbackground="black", selectbackground="blue", selectforeground="white")
         self.Entry1_1.place(relx=0.607, rely=0.623, height=20, relwidth=0.26)
 
         self.Label3 = tk.Label(Canvas1, background="#ffffff", disabledforeground="#a3a3a3", foreground="#000000")
@@ -224,16 +301,12 @@ class CustomerLogin:
         _img3 = tk.PhotoImage(file="./images/bank1.png")
         self.Label5.configure(image=_img3)
 
-        self.Button = tk.Button(Canvas1, text="Login", borderwidth="0", width=10, background="#cf0000",
-                                foreground="#ffffff",
-                                font="-family {Segoe UI} -size 10 -weight bold",
-                                command=lambda: self.login(self.Entry1.get(), self.Entry1_1.get()))
+        self.Button = tk.Button(Canvas1, text="Login", borderwidth="0", width=10, background="#cf0000", foreground="#ffffff",
+                                font="-family {Segoe UI} -size 10 -weight bold", command=lambda: self.login(self.Entry1.get(), self.Entry1_1.get()))
         self.Button.place(relx=0.765, rely=0.755)
 
-        self.Button_back = tk.Button(Canvas1, text="Back", borderwidth="0", width=10, background="#cf0000",
-                                     foreground="#ffffff",
-                                     font="-family {Segoe UI} -size 10 -weight bold",
-                                     command=self.back)
+        self.Button_back = tk.Button(Canvas1, text="Back", borderwidth="0", width=10, background="#cf0000", foreground="#ffffff",
+                                     font="-family {Segoe UI} -size 10 -weight bold", command=self.back)
         self.Button_back.place(relx=0.545, rely=0.755)
 
         global customer_img
