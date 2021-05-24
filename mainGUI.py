@@ -1,3 +1,9 @@
+# This project is developed by Prince Kumar Sah, Softwarica College, Coventry University UK
+
+# Coventry ID:
+
+# Section
+
 import os  # for creating directories Admin/Customer if it is not exists.
 from datetime import date  # for date of account creation when new customer account is created.
 import tkinter as tk
@@ -248,7 +254,6 @@ class adminMenu:
         adminLogin(Toplevel(self.master))
 
 
-
 # Customer login inside the system
 class CustomerLogin:
     def __init__(self, window=None):
@@ -327,14 +332,111 @@ class CustomerLogin:
             global customer_accNO
             customer_accNO = str(customer_account_number)
             self.master.withdraw()
-            # customerMenu(Toplevel(self.master))
+            customerMenu(Toplevel(self.master))
         else:
             Error(Toplevel(self.master))
             Error.setMessage(self, message_shown="Invalid Credentials!")
             self.setImg()
 
+# Customer Menu
+class customerMenu:
+    def __init__(self, window=None):
+        self.master = window
+        window.geometry("743x494+329+153")
+        window.minsize(120, 1)
+        window.maxsize(1370, 749)
+        window.resizable(0, 0)
+        window.title("Customer Menu")
+        window.configure(background="#cf0000")
 
-# backed function in order to the system
+        self.Labelframe1 = tk.LabelFrame(window, relief='groove', font="-family {Segoe UI} -size 13 -weight bold", borderwidth="8",
+                                         foreground="#000000", background="#fffffe")
+        self.Labelframe1.place(relx=0.081, rely=0.081, relheight=0.415, relwidth=0.848)
+
+        self.Button1 = tk.Button(self.Labelframe1, command=self.selectWithdraw, activebackground="#ececec",
+                                 activeforeground="#000000", background="#cf0000", borderwidth="0",
+                                 disabledforeground="#a3a3a3", font="-family {Segoe UI} -size 11 -weight bold", foreground="#fffffe",
+                                 highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Withdraw''')
+        self.Button1.place(relx=0.667, rely=0.195, height=34, width=181, bordermode='ignore')
+
+        self.Button2 = tk.Button(self.Labelframe1, command=self.selectDeposit, activebackground="#ececec",
+                                 activeforeground="#000000", background="#cf0000", borderwidth="0",
+                                 disabledforeground="#a3a3a3", font="-family {Segoe UI} -size 11 -weight bold", foreground="#fffffe",
+                                 highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Deposit''')
+        self.Button2.place(relx=0.04, rely=0.195, height=34, width=181, bordermode='ignore')
+
+        self.Button3 = tk.Button(self.Labelframe1, command=self.exit, activebackground="#ececec",
+                                 activeforeground="#000000",
+                                 background="#cf0000",
+                                 borderwidth="0", disabledforeground="#a3a3a3", font="-family {Segoe UI} -size 11 -weight bold",
+                                 foreground="#fffffe", highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
+                                 text='''Exit''')
+        self.Button3.place(relx=0.667, rely=0.683, height=34, width=181, bordermode='ignore')
+
+        self.Button4 = tk.Button(self.Labelframe1, command=self.selectChangePIN, activebackground="#ececec",
+                                 activeforeground="#000000", background="#cf0000", borderwidth="0",
+                                 disabledforeground="#a3a3a3", font="-family {Segoe UI} -size 11 -weight bold", foreground="#fffffe",
+                                 highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Change PIN''')
+        self.Button4.place(relx=0.04, rely=0.439, height=34, width=181, bordermode='ignore')
+
+        self.Button5 = tk.Button(self.Labelframe1, command=self.selectCloseAccount, activebackground="#ececec",
+                                 activeforeground="#000000", background="#cf0000", borderwidth="0",
+                                 disabledforeground="#a3a3a3", font="-family {Segoe UI} -size 11 -weight bold", foreground="#fffffe",
+                                 highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
+                                 text='''Close account''')
+        self.Button5.place(relx=0.667, rely=0.439, height=34, width=181, bordermode='ignore')
+
+        self.Button6 = tk.Button(self.Labelframe1, activebackground="#ececec", activeforeground="#000000",
+                                 background="#cf0000", borderwidth="0", disabledforeground="#a3a3a3",
+                                 font="-family {Segoe UI} -size 11 -weight bold", foreground="#fffffe",
+                                 highlightbackground="#d9d9d9", highlightcolor="black", pady="0",
+                                 text='''Check your balance''', command=self.checkBalance)
+        self.Button6.place(relx=0.04, rely=0.683, height=34, width=181, bordermode='ignore')
+
+        global Frame1_1_2
+        Frame1_1_2 = tk.Frame(window, relief='groove', borderwidth="8", background="#fffffe")
+        Frame1_1_2.place(relx=0.081, rely=0.547, relheight=0.415, relwidth=0.848)
+
+    def selectDeposit(self):
+        depositMoney(Toplevel(self.master))
+
+    def selectWithdraw(self):
+        withdrawMoney(Toplevel(self.master))
+
+    def selectChangePIN(self):
+        changePIN(Toplevel(self.master))
+
+    def selectCloseAccount(self):
+        self.master.withdraw()
+        closeAccount(Toplevel(self.master))
+
+    def exit(self):
+        self.master.withdraw()
+        CustomerLogin(Toplevel(self.master))
+
+    def checkBalance(self):
+        output = display_account_summary(customer_accNO, 2)
+        self.printMessage(output)
+        print("check balance function called.")
+
+    def printMessage(self, output):
+        # clearing the frame
+        for widget in Frame1_1_2.winfo_children():
+            widget.destroy()
+        # getting output_message and displaying it in the frame
+        output_message = Label(Frame1_1_2, text=output, background="#fffffe")
+        output_message.pack(pady=20)
+
+    def printMessage_outside(output):
+        # clearing the frame
+        for widget in Frame1_1_2.winfo_children():
+            widget.destroy()
+        # getting output_message and displaying it in the frame
+        output_message = Label(Frame1_1_2, text=output, background="#fffffe")
+        output_message.pack(pady=20)
+
+
+# backend function in order to the system
 
 # check the credentials of users inside the system
 def check_credentials(identity, password, choice, admin_access): # checks credentials of admin/customer and returns True or False
@@ -378,6 +480,6 @@ def check_credentials(identity, password, choice, admin_access): # checks creden
     return False
 
 
-#GUI
+# GUI ends here
 top = welcomeScreen(root)
 root.mainloop()
