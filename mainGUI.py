@@ -253,6 +253,294 @@ class adminMenu:
         self.master.withdraw()
         adminLogin(Toplevel(self.master))
 
+# Create customer account by Admin
+class createCustomerAccount:
+    def __init__(self, window=None):
+        self.master = window
+        window.geometry("411x403+437+152")
+        window.minsize(120, 1)
+        window.maxsize(1370, 749)
+        window.resizable(0, 0)
+        window.title("Create account")
+        window.configure(background="#f2f3f4")
+        window.configure(highlightbackground="#d9d9d9")
+        window.configure(highlightcolor="black")
+
+        self.Entry1 = tk.Entry(window, background="#cae4ff", disabledforeground="#a3a3a3", font="TkFixedFont",
+                               foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
+                               insertbackground="black", selectbackground="blue", selectforeground="white")
+        self.Entry1.place(relx=0.511, rely=0.027, height=20, relwidth=0.302)
+
+        self.Label1 = tk.Label(window, activebackground="#f9f9f9", activeforeground="black", background="#f2f3f4",
+                               disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                               highlightcolor="black", text='''Account number:''')
+        self.Label1.place(relx=0.219, rely=0.025, height=26, width=120)
+
+        self.Label2 = tk.Label(window, activebackground="#f9f9f9", activeforeground="black", background="#f2f3f4",
+                               disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                               highlightcolor="black", text='''Full name:''')
+        self.Label2.place(relx=0.316, rely=0.099, height=27, width=75)
+
+        self.Entry2 = tk.Entry(window, background="#cae4ff", disabledforeground="#a3a3a3",
+                               font="TkFixedFont", foreground="#000000", highlightbackground="#d9d9d9",
+                               highlightcolor="black", insertbackground="black", selectbackground="blue",
+                               selectforeground="white")
+        self.Entry2.place(relx=0.511, rely=0.099, height=20, relwidth=0.302)
+
+        self.Label3 = tk.Label(window, activebackground="#f9f9f9", activeforeground="black", background="#f2f3f4",
+                               disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                               highlightcolor="black", text='''Account type:''')
+        self.Label3.place(relx=0.287, rely=0.169, height=26, width=83)
+
+        global acc_type
+        acc_type = StringVar()
+
+        self.Radiobutton1 = tk.Radiobutton(window, activebackground="#ececec", activeforeground="#000000",
+                                           background="#f2f3f4", disabledforeground="#a3a3a3", foreground="#000000",
+                                           highlightbackground="#d9d9d9", highlightcolor="black", justify='left',
+                                           text='''Savings''', variable=acc_type, value="Savings")
+        self.Radiobutton1.place(relx=0.511, rely=0.174, relheight=0.057, relwidth=0.151)
+
+        self.Radiobutton1_1 = tk.Radiobutton(window, activebackground="#ececec", activeforeground="#000000",
+                                             background="#f2f3f4", disabledforeground="#a3a3a3", foreground="#000000",
+                                             highlightbackground="#d9d9d9", highlightcolor="black", justify='left',
+                                             text='''Current''', variable=acc_type, value="Current")
+        self.Radiobutton1_1.place(relx=0.706, rely=0.174, relheight=0.057, relwidth=0.175)
+
+        self.Radiobutton1.deselect()
+        self.Radiobutton1_1.deselect()
+
+        self.Label5 = tk.Label(window, activebackground="#f9f9f9", activeforeground="black", background="#f2f3f4",
+                               disabledforeground="#a3a3a3", foreground="#000000",
+                               highlightcolor="black", text='''Mobile number:''')
+        self.Label5.place(relx=0.268, rely=0.323, height=22, width=85)
+
+        self.Label4 = tk.Label(window, activebackground="#f9f9f9", activeforeground="black", background="#f2f3f4",
+                               disabledforeground="#a3a3a3", foreground="#000000",
+                               highlightcolor="black", text='''Birth date (DD/MM/YYYY):''')
+        self.Label4.place(relx=0.090, rely=0.238, height=27, width=175)
+
+        self.Entry5 = tk.Entry(window, background="#cae4ff", disabledforeground="#a3a3a3", font="TkFixedFont",
+                               foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
+                               insertbackground="black", selectbackground="blue", selectforeground="white")
+        self.Entry5.place(relx=0.511, rely=0.323, height=20, relwidth=0.302)
+
+        self.Entry4 = tk.Entry(window, background="#cae4ff", disabledforeground="#a3a3a3", font="TkFixedFont",
+                               foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
+                               insertbackground="black", selectbackground="blue", selectforeground="white")
+        self.Entry4.place(relx=0.511, rely=0.248, height=20, relwidth=0.302)
+
+        self.Label6 = tk.Label(window, activebackground="#f9f9f9", activeforeground="black", background="#f2f3f4",
+                               disabledforeground="#a3a3a3", foreground="#000000",
+                               highlightcolor="black", text='''Gender:''')
+        self.Label6.place(relx=0.345, rely=0.402, height=15, width=65)
+
+        global gender
+        gender = StringVar()
+
+        self.Radiobutton3 = tk.Radiobutton(window, activebackground="#ececec", activeforeground="#000000",
+                                           background="#f2f3f4", disabledforeground="#a3a3a3", foreground="#000000",
+                                           highlightcolor="black", justify='left',
+                                           text='''Male''', variable=gender, value="Male")
+        self.Radiobutton3.place(relx=0.481, rely=0.397, relheight=0.055, relwidth=0.175)
+
+        self.Radiobutton4 = tk.Radiobutton(window, activebackground="#ececec", activeforeground="#000000",
+                                           background="#f2f3f4", disabledforeground="#a3a3a3", foreground="#000000",
+                                           highlightbackground="#d9d9d9", highlightcolor="black", justify='left',
+                                           text='''Female''', variable=gender, value="Female")
+        self.Radiobutton4.place(relx=0.706, rely=0.397, relheight=0.055, relwidth=0.175)
+
+        self.Radiobutton3.deselect()
+        self.Radiobutton4.deselect()
+
+        self.Label7 = tk.Label(window, activebackground="#f9f9f9", activeforeground="black", background="#f2f3f4",
+                               disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                               highlightcolor="black", text='''Nationality:''')
+        self.Label7.place(relx=0.309, rely=0.471, height=21, width=75)
+
+        self.Entry7 = tk.Entry(window, background="#cae4ff", disabledforeground="#a3a3a3",
+                               font="TkFixedFont", foreground="#000000", highlightbackground="#d9d9d9",
+                               highlightcolor="black", insertbackground="black", selectbackground="blue",
+                               selectforeground="white")
+        self.Entry7.place(relx=0.511, rely=0.471, height=20, relwidth=0.302)
+
+        self.Entry9 = tk.Entry(window, show="*", background="#cae4ff", disabledforeground="#a3a3a3", font="TkFixedFont",
+                               foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
+                               insertbackground="black", selectbackground="blue", selectforeground="white")
+        self.Entry9.place(relx=0.511, rely=0.623, height=20, relwidth=0.302)
+
+        self.Entry10 = tk.Entry(window, show="*", background="#cae4ff", disabledforeground="#a3a3a3",
+                                font="TkFixedFont",
+                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
+                                insertbackground="black", selectbackground="blue", selectforeground="white")
+        self.Entry10.place(relx=0.511, rely=0.7, height=20, relwidth=0.302)
+
+        self.Entry11 = tk.Entry(window, background="#cae4ff", disabledforeground="#a3a3a3", font="TkFixedFont",
+                                foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
+                                insertbackground="black", selectbackground="blue", selectforeground="white")
+        self.Entry11.place(relx=0.511, rely=0.777, height=20, relwidth=0.302)
+
+        self.Label9 = tk.Label(window, activebackground="#f9f9f9", activeforeground="black", background="#f2f3f4",
+                               disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                               highlightcolor="black", text='''PIN:''')
+        self.Label9.place(relx=0.399, rely=0.62, height=21, width=35)
+
+        self.Label10 = tk.Label(window, activebackground="#f9f9f9", activeforeground="black", background="#f2f3f4",
+                                disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                                highlightcolor="black", text='''Re-enter PIN:''')
+        self.Label10.place(relx=0.292, rely=0.695, height=21, width=75)
+
+        self.Label11 = tk.Label(window, activebackground="#f9f9f9", activeforeground="black", background="#f2f3f4",
+                                disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                                highlightcolor="black", text='''Initial balance:''')
+        self.Label11.place(relx=0.292, rely=0.779, height=21, width=75)
+
+        self.Button1 = tk.Button(window, activebackground="#ececec", activeforeground="#000000", background="#cf0000",
+                                 borderwidth="0", disabledforeground="#a3a3a3", foreground="#ffffff",
+                                 highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Back''',
+                                 command=self.back)
+        self.Button1.place(relx=0.243, rely=0.893, height=24, width=67)
+
+        self.Button2 = tk.Button(window, activebackground="#ececec", activeforeground="#000000", background="#cf0000",
+                                 borderwidth="0", disabledforeground="#a3a3a3", foreground="#ffffff",
+                                 highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Proceed''',
+                                 command=lambda: self.create_acc(self.Entry1.get(), self.Entry2.get(), acc_type.get(),
+                                                                 self.Entry4.get(), self.Entry5.get(), gender.get(),
+                                                                 self.Entry7.get(), self.Entry8.get(),
+                                                                 self.Entry9.get(), self.Entry10.get(),
+                                                                 self.Entry11.get()))
+        self.Button2.place(relx=0.633, rely=0.893, height=24, width=67)
+
+        self.Label8 = tk.Label(window, background="#f2f3f4", disabledforeground="#a3a3a3", foreground="#000000",
+                               text='''KYC document name:''')
+        self.Label8.place(relx=0.18, rely=0.546, height=24, width=122)
+
+        self.Entry8 = tk.Entry(window, background="#cae4ff", disabledforeground="#a3a3a3", font="TkFixedFont",
+                               foreground="#000000", insertbackground="black")
+        self.Entry8.place(relx=0.511, rely=0.546, height=20, relwidth=0.302)
+
+    def back(self):
+        self.master.withdraw()
+
+    def create_acc(self, customer_account_number, name, account_type, date_of_birth, mobile_number, gender, nationality,
+                   KYC_document,
+                   PIN, confirm_PIN, initial_balance):
+
+        if is_valid(customer_account_number) and customer_account_number.isnumeric():
+            if name != "":
+                if account_type == "Savings" or account_type == "Current":
+                    if check_date(date_of_birth):
+                        if is_valid_mobile(mobile_number):
+                            if gender == "Male" or gender == "Female":
+                                if nationality.__len__() != 0:
+                                    if KYC_document.__len__() != 0:
+                                        if PIN.isnumeric() and PIN.__len__() == 4:
+                                            if confirm_PIN == PIN:
+                                                if initial_balance.isnumeric():
+                                                    output_message = "Customer account created successfully!"
+                                                    print(output_message)
+                                                    adminMenu.printMessage_outside(output_message)
+                                                else:
+                                                    Error(Toplevel(self.master))
+                                                    Error.setMessage(self, message_shown="Invalid balance!")
+                                                    return
+                                            else:
+                                                Error(Toplevel(self.master))
+                                                Error.setMessage(self, message_shown="PIN mismatch!")
+                                                return
+                                        else:
+                                            Error(Toplevel(self.master))
+                                            Error.setMessage(self, message_shown="Invalid PIN!")
+                                            return
+                                    else:
+                                        Error(Toplevel(self.master))
+                                        Error.setMessage(self, message_shown="Enter KYC document!")
+                                        return
+                                else:
+                                    Error(Toplevel(self.master))
+                                    Error.setMessage(self, message_shown="Enter Nationality!")
+                                    return
+                            else:
+                                Error(Toplevel(self.master))
+                                Error.setMessage(self, message_shown="Select gender!")
+                                return
+                        else:
+                            Error(Toplevel(self.master))
+                            Error.setMessage(self, message_shown="Invalid mobile number!")
+                            return
+                    else:
+                        Error(Toplevel(self.master))
+                        Error.setMessage(self, message_shown="Invalid date!")
+                        return
+                else:
+                    Error(Toplevel(self.master))
+                    Error.setMessage(self, message_shown="Select account type!")
+                    return
+            else:
+                Error(Toplevel(self.master))
+                Error.setMessage(self, message_shown="Name can't be empty!")
+                return
+        else:
+            Error(Toplevel(self.master))
+            Error.setMessage(self, message_shown="Acc-number is invalid!")
+            return
+
+        today = date.today()  # set date of account creation
+        date_of_account_creation = today.strftime("%d/%m/%Y")
+
+        # adding in database
+        data = customer_account_number + "\n" + PIN + "\n" + initial_balance + "\n" + date_of_account_creation + "\n" + name + "\n" + account_type + "\n" + date_of_birth + "\n" + mobile_number + "\n" + gender + "\n" + nationality + "\n" + KYC_document + "\n" + "*\n"
+        append_data("./database/Customer/customerDatabase.txt", data)
+
+        self.master.withdraw()
+
+# Close customer account by Admin
+class CloseAccountByAdmin:
+    def __init__(self, window=None):
+        self.master = window
+        window.geometry("411x117+498+261")
+        window.minsize(120, 1)
+        window.maxsize(1370, 749)
+        window.resizable(0, 0)
+        window.title("Close customer account")
+        window.configure(background="#f2f3f4")
+
+        self.Label1 = tk.Label(window, background="#f2f3f4", disabledforeground="#a3a3a3",
+                               text='''Enter account number:''')
+        self.Label1.place(relx=0.232, rely=0.220, height=20, width=120)
+
+        self.Entry1 = tk.Entry(window, background="#cae4ff", disabledforeground="#a3a3a3", font="TkFixedFont",
+                               foreground="#000000", insertbackground="black")
+        self.Entry1.place(relx=0.536, rely=0.220, height=20, relwidth=0.232)
+
+        self.Button1 = tk.Button(window, activebackground="#ececec", activeforeground="#000000", borderwidth="0",
+                                 background="#cf0000", disabledforeground="#a3a3a3", foreground="#ffffff",
+                                 highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text="Back",
+                                 command=self.back)
+        self.Button1.place(relx=0.230, rely=0.598, height=24, width=67)
+
+        self.Button2 = tk.Button(window, activebackground="#ececec", activeforeground="#000000", background="#cf0000",
+                                 borderwidth="0", disabledforeground="#a3a3a3", foreground="#ffffff",
+                                 highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text="Proceed",
+                                 command=lambda: self.submit(self.Entry1.get()))
+        self.Button2.place(relx=0.598, rely=0.598, height=24, width=67)
+
+    def back(self):
+        self.master.withdraw()
+
+    def submit(self, identity):
+        if not is_valid(identity):
+            delete_customer_account(identity, 1)
+        else:
+            Error(Toplevel(self.master))
+            Error.setMessage(self, message_shown="Account doesn't exist!")
+            return
+        self.master.withdraw()
+
+
+
+
+# CUSTOMER ALL COMPONENTS
 
 # Customer login inside the system
 class CustomerLogin:
@@ -436,6 +724,9 @@ class customerMenu:
         output_message.pack(pady=20)
 
 
+
+
+
 # backend function in order to the system
 
 # check the credentials of users inside the system
@@ -479,6 +770,86 @@ def check_credentials(identity, password, choice, admin_access): # checks creden
     database.close()
     return False
 
+# check weather the customer account is valid or not
+def is_valid(customer_account_number):
+    try:
+        customer_database = open("./database/Customer/customerDatabase.txt")
+    except FileNotFoundError:
+        os.makedirs("./database/Customer/customerDatabase.txt", exist_ok=True)
+        print("# Customer database doesn't exists!\n# New Customer database created automatically.")
+        customer_database = open("./database/Customer/customerDatabase.txt", "a")
+    else:  # if customer account  number is already allocated then this will return false. otherwise true.
+        if check_credentials(customer_account_number, "DO_NOT_CHECK", 2, True):
+            return False
+        else:
+            return True
+    customer_database.close()
+
+
+# check leap year
+def check_leap(year):
+    return ((int(year) % 4 == 0) and (int(year) % 100 != 0)) or (int(year) % 400 == 0)
+
+# Check the date inside year
+def check_date(date):
+    days_in_months = ["31", "28", "31", "30", "31", "30", "31", "31", "30", "31", "30", "31"]
+    days_in_months_in_leap_year = ["31", "29", "31", "30", "31", "30", "31", "31", "30", "31", "30", "31"]
+
+    if date == "":
+        return False
+
+    date_elements = date.split("/")
+    day = int(date_elements[0])
+    month = int(date_elements[1])
+    year = int(date_elements[2])
+    if (year > 2021 or year < 0) or (month > 12 or month < 1):
+        return False
+    else:
+        if check_leap(year):
+            numOfDays = days_in_months_in_leap_year[month - 1]
+        else:
+            numOfDays = days_in_months[month - 1]
+        return int(numOfDays) >= day >= 1
+
+# check the phone number is valid or not / weather it is less than 10 digit
+def is_valid_mobile(mobile_number):
+    if mobile_number.__len__() == 10 and mobile_number.isnumeric():
+        return True
+    else:
+        return False
+
+# append or open the database
+def append_data(database_path, data):
+    customer_database = open(database_path, "a")
+    customer_database.write(data)
+
+
+# delete customer account from the system
+def delete_customer_account(identity, choice):  # choice 1 for admin, choice 2 for customer
+    customer_database = open("./database/Customer/customerDatabase.txt")
+    data_collector = ""
+    flag = 0
+    for line in customer_database:
+        if identity == line.replace("\n", ""):
+            flag = 1
+            for index in range(11):
+                customer_database.readline()  # skipping the line
+        else:
+            data_collector += line
+            for index in range(11):
+                data_collector += customer_database.readline()
+    customer_database = open("./database/Customer/customerDatabase.txt", "w")
+    customer_database.write(data_collector)
+    if flag == 1:
+        output_message = "Account with account no." + str(identity) + " closed successfully!"
+        if choice == 1:
+            adminMenu.printMessage_outside(output_message)
+        print(output_message)
+    else:
+        output_message = "Account not found !"
+        if choice == 1:
+            adminMenu.printMessage_outside(output_message)
+        print(output_message)
 
 # GUI ends here
 top = welcomeScreen(root)
