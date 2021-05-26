@@ -537,6 +537,128 @@ class CloseAccountByAdmin:
             return
         self.master.withdraw()
 
+# Create Account of New Admin
+class createAdmin:
+    def __init__(self, window=None):
+        self.master = window
+        window.geometry("411x150+512+237")
+        window.minsize(120, 1)
+        window.maxsize(1370, 749)
+        window.resizable(0, 0)
+        window.title("Create admin account")
+        window.configure(background="#f2f3f4")
+
+        self.Label1 = tk.Label(window, background="#f2f3f4", disabledforeground="#a3a3a3", foreground="#000000",
+                               text='''Enter admin ID:''')
+        self.Label1.place(relx=0.219, rely=0.067, height=27, width=104)
+
+        self.Label2 = tk.Label(window, background="#f2f3f4", disabledforeground="#a3a3a3", foreground="#000000",
+                               text='''Enter password:''')
+        self.Label2.place(relx=0.219, rely=0.267, height=27, width=104)
+
+        self.Entry1 = tk.Entry(window, background="#cae4ff", disabledforeground="#a3a3a3", font="TkFixedFont",
+                               foreground="#000000", insertbackground="black")
+        self.Entry1.place(relx=0.487, rely=0.087, height=20, relwidth=0.326)
+
+        self.Entry2 = tk.Entry(window, show="*", background="#cae4ff", disabledforeground="#a3a3a3", font="TkFixedFont",
+                               foreground="#000000", insertbackground="black")
+        self.Entry2.place(relx=0.487, rely=0.287, height=20, relwidth=0.326)
+
+        self.Label3 = tk.Label(window, activebackground="#f9f9f9", activeforeground="black", background="#f2f3f4",
+                               disabledforeground="#a3a3a3", foreground="#000000", highlightbackground="#d9d9d9",
+                               highlightcolor="black", text='''Confirm password:''')
+        self.Label3.place(relx=0.195, rely=0.467, height=27, width=104)
+
+        self.Entry3 = tk.Entry(window, show="*", background="#cae4ff", disabledforeground="#a3a3a3", font="TkFixedFont",
+                               foreground="#000000", insertbackground="black")
+        self.Entry3.place(relx=0.487, rely=0.487, height=20, relwidth=0.326)
+
+        self.Button1 = tk.Button(window, activebackground="#ececec", activeforeground="#000000", background="#cf0000",
+                                 borderwidth="0", disabledforeground="#a3a3a3", foreground="#ffffff",
+                                 highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text="Proceed",
+                                 command=lambda: self.create_admin_account(self.Entry1.get(), self.Entry2.get(),
+                                                                           self.Entry3.get()))
+        self.Button1.place(relx=0.598, rely=0.733, height=24, width=67)
+
+        self.Button2 = tk.Button(window, activebackground="#ececec", activeforeground="#000000", background="#cf0000",
+                                 borderwidth="0", disabledforeground="#a3a3a3", foreground="#ffffff",
+                                 highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text="Back",
+                                 command=self.back)
+        self.Button2.place(relx=0.230, rely=0.733, height=24, width=67)
+
+    def back(self):
+        self.master.withdraw()
+
+    def create_admin_account(self, identity, password, confirm_password):
+        if check_credentials(identity, "DO_NOT_CHECK_ADMIN", 1, False):
+            Error(Toplevel(self.master))
+            Error.setMessage(self, message_shown="ID is unavailable!")
+        else:
+            if password == confirm_password and len(password) != 0:
+                create_admin_account(identity, password)
+                self.master.withdraw()
+            else:
+                Error(Toplevel(self.master))
+                if password != confirm_password:
+                    Error.setMessage(self, message_shown="Password Mismatch!")
+                else:
+                    Error.setMessage(self, message_shown="Invalid password!")
+
+# Delete account of Admin
+class deleteAdmin:
+    def __init__(self, window=None):
+        self.master = window
+        window.geometry("411x117+504+268")
+        window.minsize(120, 1)
+        window.maxsize(1370, 749)
+        window.resizable(0, 0)
+        window.title("Delete admin account")
+        window.configure(background="#f2f3f4")
+
+        self.Entry1 = tk.Entry(window, background="#cae4ff", disabledforeground="#a3a3a3", font="TkFixedFont",
+                               foreground="#000000", insertbackground="black")
+        self.Entry1.place(relx=0.487, rely=0.092, height=20, relwidth=0.277)
+
+        self.Label1 = tk.Label(window, background="#f2f3f4", disabledforeground="#a3a3a3", foreground="#000000",
+                               text='''Enter admin ID:''')
+        self.Label1.place(relx=0.219, rely=0.092, height=21, width=104)
+
+        self.Label2 = tk.Label(window, background="#f2f3f4", disabledforeground="#a3a3a3", foreground="#000000",
+                               text='''Enter password:''')
+        self.Label2.place(relx=0.209, rely=0.33, height=21, width=109)
+
+        self.Entry1_1 = tk.Entry(window, show="*", background="#cae4ff", disabledforeground="#a3a3a3",
+                                 font="TkFixedFont",
+                                 foreground="#000000", highlightbackground="#d9d9d9", highlightcolor="black",
+                                 insertbackground="black", selectbackground="blue", selectforeground="white")
+        self.Entry1_1.place(relx=0.487, rely=0.33, height=20, relwidth=0.277)
+
+        self.Button1 = tk.Button(window, activebackground="#ececec", activeforeground="#000000", background="#cf0000",
+                                 borderwidth="0", disabledforeground="#a3a3a3", foreground="#ffffff",
+                                 highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Back''',
+                                 command=self.back)
+        self.Button1.place(relx=0.243, rely=0.642, height=24, width=67)
+
+        self.Button2 = tk.Button(window, activebackground="#ececec", activeforeground="#000000", background="#cf0000",
+                                 borderwidth="0", disabledforeground="#a3a3a3", foreground="#ffffff",
+                                 highlightbackground="#d9d9d9", highlightcolor="black", pady="0", text='''Proceed''',
+                                 command=lambda: self.delete_admin(self.Entry1.get(), self.Entry1_1.get()))
+        self.Button2.place(relx=0.608, rely=0.642, height=24, width=67)
+
+    def delete_admin(self, admin_id, password):
+        if admin_id == "aayush" or admin_id == admin_idNO:
+            Error(Toplevel(self.master))
+            Error.setMessage(self, message_shown="Operation Denied!")
+            return
+        if check_credentials(admin_id, password, 1, True):
+            delete_admin_account(admin_id)
+            self.master.withdraw()
+        else:
+            Error(Toplevel(self.master))
+            Error.setMessage(self, message_shown="Invalid Credentials!")
+
+    def back(self):
+        self.master.withdraw()
 
 
 
@@ -727,7 +849,7 @@ class customerMenu:
 
 
 
-# backend function in order to the system
+# Backend function in order to the system
 
 # check the credentials of users inside the system
 def check_credentials(identity, password, choice, admin_access): # checks credentials of admin/customer and returns True or False
@@ -785,8 +907,7 @@ def is_valid(customer_account_number):
             return True
     customer_database.close()
 
-
-# check leap year
+# Check leap year
 def check_leap(year):
     return ((int(year) % 4 == 0) and (int(year) % 100 != 0)) or (int(year) % 400 == 0)
 
@@ -811,20 +932,20 @@ def check_date(date):
             numOfDays = days_in_months[month - 1]
         return int(numOfDays) >= day >= 1
 
-# check the phone number is valid or not / weather it is less than 10 digit
+# Check the phone number is valid or not / weather it is less than 10 digit
 def is_valid_mobile(mobile_number):
     if mobile_number.__len__() == 10 and mobile_number.isnumeric():
         return True
     else:
         return False
 
-# append or open the database
+# Append or open the database
 def append_data(database_path, data):
     customer_database = open(database_path, "a")
     customer_database.write(data)
 
 
-# delete customer account from the system
+# Delete customer account from the database.txt file
 def delete_customer_account(identity, choice):  # choice 1 for admin, choice 2 for customer
     customer_database = open("./database/Customer/customerDatabase.txt")
     data_collector = ""
@@ -849,6 +970,42 @@ def delete_customer_account(identity, choice):  # choice 1 for admin, choice 2 f
         output_message = "Account not found !"
         if choice == 1:
             adminMenu.printMessage_outside(output_message)
+        print(output_message)
+
+# Create and Add Admin account to the Database.txt file
+def create_admin_account(identity, password):
+    admin_database = open("./database/Admin/adminDatabase.txt", "a")
+    admin_id = identity
+    admin_password = password
+    append_data("./database/Admin/adminDatabase.txt", admin_id + "\n" + admin_password + "\n" + "*\n")
+    output_message = "Admin account created successfully !"
+    adminMenu.printMessage_outside(output_message)
+    print(output_message)
+    admin_database.close()
+
+# Delete Admin account from the database.txt file
+def delete_admin_account(identity):
+    admin_database = open("./database/Admin/adminDatabase.txt")
+    data_collector = ""
+    flag = 0
+    for line in admin_database:
+        if identity == line.replace("\n", ""):
+            flag = 1
+            for index in range(2):
+                admin_database.readline()
+        else:
+            data_collector += line
+            for index in range(2):
+                data_collector += admin_database.readline()
+    admin_database = open("./database/Admin/adminDatabase.txt", "w")
+    admin_database.write(data_collector)
+    if flag == 1:
+        output_message = "Account with account id " + identity + " closed successfully!"
+        print(output_message)
+        adminMenu.printMessage_outside(output_message)
+    else:
+        output_message = "Account not found :("
+        adminMenu.printMessage_outside(output_message)
         print(output_message)
 
 # GUI ends here
