@@ -11,13 +11,19 @@ This is a prototype of Nic Asia Bank which consists of two users which is admin 
 
 ##Admin
 
-1. Admin can create account of new customer and register them to the system.
-2. Admin can delete account of customer as well.
-3. Any admin is able to create the account of new admin for the system.
-4. Admin is also able to delete any Admin account
-5. Admin is able to view details of customer account.
+1. Create account of new customer and register them to the system.
+2. Delete or remove account of customer as well.
+3. Create the account of new admin for the system.
+4. Delete or remove any Admin account
+5. View the details of customer account.
 
 ##Customer
 
-1. 
+1. Deposit money to the account.
+2. Withdraw money from the account.
+3. Change Pin of their own account.
+4. Close their own account.
+5. Check current balance available in the account.
+
+
 
