@@ -20,17 +20,17 @@ class welcomeScreen:
         window.minsize(120, 1)
         window.maxsize(1370, 749)
         window.resizable(0, 0)
-        window.title("NIC ASIA BANK LIMITED")
-        p1 = PhotoImage(file='images/nic-logo.PNG')
+        window.title("Banking System")
+        p1 = PhotoImage(file='images/smalll.PNG')
         window.iconphoto(True, p1)
         window.configure(background="#cf0000")
         window.configure(cursor="arrow")
 
         self.Canvas1 = tk.Canvas(window, background="#ffffff", borderwidth="0", insertbackground="black", relief="ridge", selectbackground="blue", selectforeground="white")
-        self.Canvas1.place(relx=0.1, rely=0.1, relheight=0.751, relwidth=0.752)
+        self.Canvas1.place(relx=0.1, rely=0.1, relheight=0.750, relwidth=0.755)
 
         # load the .gif image file
-        self.gif1 = PhotoImage(file='images/nic-login-form.PNG')
+        self.gif1 = PhotoImage(file='images/login-form.PNG')
         # put gif image on canvas pic's upper left corner (NW) on the canvas is at x=50 y=10
         self.Canvas1.create_image(25, 0, image=self.gif1, anchor=NW)
 
@@ -44,7 +44,7 @@ class welcomeScreen:
         self.Button2.configure(font="-family {Segoe UI} -size 10 -weight bold")
         self.Button2.place(relx=0.435, rely=0.730, height=50, width=100)
 
-        self.Label1 = tk.Label(self.Canvas1, background="#ffffff", disabledforeground="#e04728", font="-family {Segoe UI} -size 13 -weight bold", foreground="#000000", text='''  Welcome to the system \n \n Please Select Your Role by Clicking on the buttons below''')
+        self.Label1 = tk.Label(self.Canvas1, background="#ffffff", disabledforeground="#e04728", font="-family {Segoe UI} -size 13 -weight bold", foreground="#000000", text='''  Welcome to the Banking System \n \n Please Select Your Role by Clicking on the buttons below''')
         self.Label1.place(relx=0.075, rely=0.380, height=100, width=700)
 
     def selectEmployee(self):
@@ -77,7 +77,7 @@ class adminLogin:
         Label2 = tk.Label(Canvas1, background="#ffffff", disabledforeground="#a3a3a3", foreground="#000000")
         Label2.place(relx=0.067, rely=0.283, height=181, width=233)
         global _img0
-        _img0 = tk.PhotoImage(file="./images/small-logo.PNG")
+        _img0 = tk.PhotoImage(file="./images/admin.PNG")
         Label2.configure(image=_img0)
 
         self.Entry1 = tk.Entry(Canvas1, background="#e2e2e2", borderwidth="2", disabledforeground="#a3a3a3", font="TkFixedFont", foreground="#000000", highlightbackground="#b6b6b6", highlightcolor="#004080", insertbackground="black")
@@ -113,7 +113,7 @@ class adminLogin:
         self.Button_back.place(relx=0.545, rely=0.755)
 
         global admin_img
-        admin_img = tk.PhotoImage(file="./images/small-logo.PNG")
+        admin_img = tk.PhotoImage(file="./images/admin.PNG")
 
     def back(self):
         self.master.withdraw()

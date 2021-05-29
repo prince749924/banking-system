@@ -1,6 +1,6 @@
-# Nic Asia Bank Prototype (Online Banking System)
+# Online Banking System
 
-This is a prototype of Nic Asia Bank which consists of two users which is admin and customer and has some basic functionalities.
+This is a prototype of Bank which consists of two users which is admin and customer and has some basic functionalities.
 
 ## Packages required
 1. Tkinter - Tkinter is the standard GUI library for Python.
