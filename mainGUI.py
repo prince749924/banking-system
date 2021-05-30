@@ -1,8 +1,6 @@
 # This project is developed by Prince Kumar Sah, Softwarica College, Coventry University, UK
-
-# Coventry ID:
-
-# Section
+# Student ID: 11495309
+# Batch: 29 B
 
 import os  # for creating directories Admin/Customer if it is not exists.
 from datetime import date  # for date of account creation when new customer account is created.
