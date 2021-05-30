@@ -1,4 +1,4 @@
-# Online Banking System
+# Banking System
 
 This is a prototype of Bank which consists of two users which is admin and customer and has some basic functionalities.
 
