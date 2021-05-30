@@ -7,7 +7,8 @@ This is a prototype of Bank which consists of two users which is admin and custo
 2. OS - The OS module in Python provides functions for interacting with the operating system.
 3. datetime - Datetime module supplies classes to work with date and time.
 
-### The responsibilities of users inside the system.
+## The responsibilities of users inside the system.
+
 
 **Admin**
 
